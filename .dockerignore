@@ -1,0 +1,9 @@
+node_modules
+Dockerfile
+*.yml
+.dockerignore
+.git
+.gitignore
+.env*
+.editorconfig
+.prettierrc
