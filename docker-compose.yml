@@ -11,6 +11,7 @@ services:
 
   node-app:
     build: .
+    image: ghcr.io/higorantonio/docker-nodejs-blog:1.0
     depends_on:
       - mongo
       - redis
