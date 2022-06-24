@@ -6,12 +6,18 @@ services:
       - '3333:80'
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    deploy:
+      restart_policy:
+        condition: any
     depends_on:
       - node-app
 
   node-app:
     build: .
     image: ghcr.io/higorantonio/docker-nodejs-blog:1.0
+    deploy:
+      restart_policy:
+        condition: any
     depends_on:
       - mongo
       - redis
@@ -23,11 +29,17 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
       - mongo-db:/data/db
+    deploy:
+      restart_policy:
+        condition: any
 
   redis:
     image: redis:7.0.2-alpine
     volumes:
       - redis:/data
+    deploy:
+      restart_policy:
+        condition: any
 
 volumes:
   mongo-db:
