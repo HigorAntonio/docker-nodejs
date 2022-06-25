@@ -3,12 +3,28 @@ services:
   nginx:
     ports:
       - '80:80'
+    deploy:
+      restart_policy:
+        condition: any
 
   node-app:
     build:
       context: .
       args:
         NODE_ENV: production
+    deploy:
+      restart_policy:
+        condition: any
     env_file:
       - ./.env.production
     command: node ./src/server.js
+
+  mongo:
+    deploy:
+      restart_policy:
+        condition: any
+
+  redis:
+    deploy:
+      restart_policy:
+        condition: any
